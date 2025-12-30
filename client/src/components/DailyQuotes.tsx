@@ -10,7 +10,7 @@ const DailyQuotes = () => {
   );
   const [loading, setLoading] = useState(true);
 
-  const fetchQuote = async (req, res) => {
+  const fetchQuote = async () => {
     setLoading(true)
 
     try {
