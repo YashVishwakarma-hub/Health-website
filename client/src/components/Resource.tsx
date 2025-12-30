@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Users, BookOpen, HeartPulse, ArrowRight } from 'lucide-react';
 
 const Resource = () => {

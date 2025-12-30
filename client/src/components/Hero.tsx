@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Calendar, MessageCircle, Activity, ChevronRight, User } from 'lucide-react';
 
 const Hero = () => {

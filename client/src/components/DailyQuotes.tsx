@@ -11,8 +11,21 @@ const DailyQuotes = () => {
   } | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const fetchQuote = async () => {
+    setLoading(true);
+
+    try {
+      const response = await axios.get("http://localhost:3000/api/quotes");
+      setQuoteData(response.data);
+      console.log("Fetched quotes", response.data);
+    } catch (error) {
+      console.error("Unable to fetch a quotes...", error);
+    }
+    setLoading(false);
+  };
+
   useEffect(() => {
-    const fetchQuote = async () => {
+    const loadQuote = async () => {
       setLoading(true);
 
       try {
@@ -21,12 +34,11 @@ const DailyQuotes = () => {
         console.log("Fetched quotes", response.data);
       } catch (error) {
         console.error("Unable to fetch a quotes...", error);
-      } finally {
-        setLoading(false);
       }
+      setLoading(false);
     };
 
-    fetchQuote(); // Call the function
+    loadQuote();
   }, []);
 
   return (
