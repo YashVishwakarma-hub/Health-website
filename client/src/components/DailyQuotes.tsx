@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Quote, RefreshCw } from "lucide-react";
+import { Quote } from "lucide-react";
 import axios from "axios";
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
@@ -11,34 +11,23 @@ const DailyQuotes = () => {
   } | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchQuote = async () => {
-    setLoading(true);
-
-    try {
-      const response = await axios.get("http://localhost:3000/api/quotes");
-      setQuoteData(response.data);
-      console.log("Fetched quotes", response.data);
-    } catch (error) {
-      console.error("Unable to fetch a quotes...", error);
-    }
-    setLoading(false);
-  };
-
   useEffect(() => {
-    const loadQuote = async () => {
+    const fetchQuote = async () => {
       setLoading(true);
 
       try {
-        const response = await axios.get("http://localhost:3000/api/quotes");
+        // Use relative URL - works in both dev and production
+        const response = await axios.get("/api/quotes");
         setQuoteData(response.data);
         console.log("Fetched quotes", response.data);
       } catch (error) {
-        console.error("Unable to fetch a quotes...", error);
+        console.error("Unable to fetch quotes...", error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
 
-    loadQuote();
+    fetchQuote();
   }, []);
 
   return (
@@ -69,21 +58,6 @@ const DailyQuotes = () => {
           )}
         </div>
 
-        <div className="mt-12">
-          <button
-            onClick={fetchQuote}
-            disabled={loading}
-            className="group inline-flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-accent transition-colors disabled:opacity-50"
-          >
-            <RefreshCw
-              size={16}
-              className={`group-hover:rotate-180 transition-transform duration-500 ${
-                loading ? "animate-spin" : ""
-              }`}
-            />
-            New Inspiration
-          </button>
-        </div>
       </div>
     </section>
   );
