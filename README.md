@@ -1,6 +1,6 @@
 # Together — Health Landing Page 🩺🌿
 
-Live demo: https://together.example.com 🚀  <!-- Replace with your real live demo URL -->
+Live demo: [https://together.example.com ](https://together-flax.vercel.app/)🚀  <!-- Replace with your real live demo URL -->
 
 A clean, responsive landing page for "Together" — a simple health website built to present your service, show key information, and let visitors get in touch. This repo contains a Vite + React (TypeScript) frontend and a lightweight Node.js + Express backend (used for a contact endpoint / health check). Designed to be minimal, fast, and easy to deploy.
 
