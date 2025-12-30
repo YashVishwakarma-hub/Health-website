@@ -1,4 +1,4 @@
-import React from "react";
+
 import Footer from "./components/Footer";
 import ContactSection from "./components/ContactSection";
 import DailyQuotes from "./components/DailyQuotes";

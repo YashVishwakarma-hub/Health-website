@@ -1,32 +1,32 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Quote, RefreshCw } from "lucide-react";
-import axios from 'axios';
+import axios from "axios";
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
 const DailyQuotes = () => {
-  const [quoteData, setQuoteData] = useState<{ q: string; a: string } | null>(
-    null
-  );
+  const [quoteData, setQuoteData] = useState<{
+    quote: string;
+    author: string;
+  } | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchQuote = async () => {
-    setLoading(true)
-
-    try {
-      const response = await axios.get('http://localhost:3000/api/quotes');
-      setQuoteData(response.data);
-      console.log("Fetched quotes", response.data)
-
-    } catch (error) {
-      console.error("Unable to fetch a quotes...", error)
-      
-    }
-    setLoading(false);
-  }
-
   useEffect(() => {
-    fetchQuote();
+    const fetchQuote = async () => {
+      setLoading(true);
+
+      try {
+        const response = await axios.get("http://localhost:3000/api/quotes");
+        setQuoteData(response.data);
+        console.log("Fetched quotes", response.data);
+      } catch (error) {
+        console.error("Unable to fetch a quotes...", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchQuote(); // Call the function
   }, []);
 
   return (
